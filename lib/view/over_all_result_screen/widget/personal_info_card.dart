@@ -10,19 +10,26 @@ class PersonalInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Card(
-        margin: EdgeInsets.zero,
-        color: Colors.white.withOpacity(.3),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 14,
-          ),
-          child: GetBuilder<PersonalInfoController>(
-            builder: (controller) {
-              return Column(
+    return GetBuilder<PersonalInfoController>(
+      builder: (controller) {
+        if (controller.inProgress) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          );
+        }
+        return SizedBox(
+          width: double.infinity,
+          child: Card(
+            margin: EdgeInsets.zero,
+            color: Colors.white.withOpacity(.3),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 14,
+              ),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
@@ -64,11 +71,11 @@ class PersonalInfoCard extends StatelessWidget {
                     name: controller.personalInfoModel.facultyName ?? '',
                   ),
                 ],
-              );
-            },
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

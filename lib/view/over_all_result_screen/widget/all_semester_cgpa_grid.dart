@@ -14,6 +14,12 @@ class AllSemesterCgpaGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GetBuilder<SemesterResultController>(builder: (controller) {
+        if (controller.inProgress) {
+          return const Center(
+            child: CircularProgressIndicator(color: Colors.white),
+          );
+        }
+
         return GridView.builder(
           itemCount: controller.allSemesterResults.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
