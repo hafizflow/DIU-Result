@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:get/get.dart';
 import '../model/response_data.dart';
 import '../model/semester_result_model.dart';
@@ -38,7 +37,7 @@ class SemesterResultController extends GetxController {
           semesterResults.add(semesterResultModel);
         }
 
-        log(semesterResults.toString());
+        // log(semesterResults.toString());
 
         // Add the list of semester results to the _allSemesterResults
         if (semesterResults.isNotEmpty) {

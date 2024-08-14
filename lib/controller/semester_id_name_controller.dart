@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:diu_result/model/semester_id_name_model.dart';
 import 'package:get/get.dart';

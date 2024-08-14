@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:diu_result/model/personal_info_model.dart';
 import 'package:diu_result/services/network_caller_service.dart';
