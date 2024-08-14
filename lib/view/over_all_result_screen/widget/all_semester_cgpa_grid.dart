@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:diu_result/controller/semester_result_controller.dart';
-import 'package:diu_result/view/details_result_screen/details_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../model/semester_result_model.dart';
+import '../../details_result_screen/details_result_screen.dart';
 
 class AllSemesterCgpaGrid extends StatelessWidget {
   const AllSemesterCgpaGrid({
@@ -23,10 +23,19 @@ class AllSemesterCgpaGrid extends StatelessWidget {
             mainAxisExtent: 140,
           ),
           itemBuilder: (context, index) {
-            final result = controller.allSemesterResults[index];
-            // log(controller.allSemesterResults.length.toString());
+            List<SemesterResultModel> semesterResults =
+                controller.allSemesterResults[index];
+
+            // Assuming all courses in a semester have the same semesterName and semesterYear
+            String? semesterName = semesterResults.first.semesterName;
+            String semesterYear = semesterResults.first.semesterYear.toString();
+
+            // Calculate the average CGPA for the semester
+            double? cgpa = semesterResults.first.cgpa;
+
             return GestureDetector(
-              onTap: () => Get.to(() => DetailsResultScreen(result: result)),
+              onTap: () =>
+                  Get.to(() => DetailsResultScreen(result: semesterResults)),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.3),
@@ -37,7 +46,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        result.cgpa.toString(),
+                        cgpa.toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -45,7 +54,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${result.semesterName} ${result.semesterYear}',
+                        '$semesterName $semesterYear',
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

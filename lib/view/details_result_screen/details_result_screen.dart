@@ -7,7 +7,7 @@ import '../../model/semester_result_model.dart';
 class DetailsResultScreen extends StatelessWidget {
   const DetailsResultScreen({super.key, required this.result});
 
-  final SemesterResultModel result;
+  final List<SemesterResultModel> result;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class DetailsResultScreen extends StatelessWidget {
                   const AppBarTitle(isShowBack: true),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: 6,
+                      itemCount: result.length,
                       itemBuilder: (context, index) {
                         return Card(
                           color: Colors.white.withOpacity(.3),
@@ -32,27 +32,27 @@ class DetailsResultScreen extends StatelessWidget {
                             title: Padding(
                               padding: const EdgeInsets.only(bottom: 4),
                               child: PersonalInfoText(
-                                label: 'Subject:',
-                                name: result.courseTitle.toString(),
-                              ),
+                                  label: 'Subject:',
+                                  name: result[index].courseTitle.toString()),
                             ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PersonalInfoText(
                                   label: 'Grade: ',
-                                  name: '${result.gradeLetter}',
+                                  name: result[index].gradeLetter.toString(),
                                 ),
                                 const SizedBox(height: 2),
                                 PersonalInfoText(
                                   label: 'Grade Point: ',
-                                  name: '${result.pointEquivalent}',
+                                  name:
+                                      result[index].pointEquivalent.toString(),
                                 ),
                               ],
                             ),
                             trailing: CircleAvatar(
                               backgroundColor: Colors.grey,
-                              child: Text('${result.totalCredit?.toInt()}'),
+                              child: Text(result[index].totalCredit.toString()),
                             ),
                           ),
                         );
