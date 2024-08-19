@@ -24,7 +24,7 @@ class OverAllResultScreen extends StatelessWidget {
                   children: [
                     const AppBarTitle(),
                     const SizedBox(height: 16),
-                    const CustomSearchField(),
+                    CustomSearchField(),
                     const SizedBox(height: 16),
                     controller.personalInfoModel.studentId == null
                         ? const SizedBox.shrink()

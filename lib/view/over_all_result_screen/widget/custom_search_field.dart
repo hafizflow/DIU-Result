@@ -6,30 +6,30 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomSearchField extends StatelessWidget {
-  const CustomSearchField({
+  CustomSearchField({
     super.key,
   });
 
+  final pController = Get.find<PersonalInfoController>();
+  final sIdNameController = Get.find<SemesterIdNameController>();
+  final sResultController = Get.find<SemesterResultController>();
+
+  /// Function to handle the result search operation
+  Future<void> performSearch() async {
+    await pController.getPersonalInfo(pController.idTEController.text.trim());
+
+    bool success = await sIdNameController.getAllSemesterIdName();
+
+    if (success && sIdNameController.semesterIds.isNotEmpty) {
+      await sResultController.getAllSemesterResults(
+        sIdNameController.semesterIds,
+        pController.idTEController.text.trim(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final pController = Get.find<PersonalInfoController>();
-    final sIdNameController = Get.find<SemesterIdNameController>();
-    final sResultController = Get.find<SemesterResultController>();
-
-    // Define a function to handle the search operation
-    Future<void> performSearch() async {
-      await pController.getPersonalInfo(pController.idTEController.text.trim());
-
-      bool success = await sIdNameController.getAllSemesterIdName();
-
-      if (success && sIdNameController.semesterIds.isNotEmpty) {
-        await sResultController.getAllSemesterResults(
-          sIdNameController.semesterIds,
-          pController.idTEController.text.trim(),
-        );
-      }
-    }
-
     return TextFormField(
       controller: pController.idTEController,
       style: TextStyle(
@@ -37,6 +37,13 @@ class CustomSearchField extends StatelessWidget {
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Please enter your ID';
+        }
+        // You can add further synchronous checks here if needed
+        return null;
+      },
       decoration: InputDecoration(
         hintText: 'Enter Your ID',
         hintStyle: const TextStyle(color: Colors.white),
