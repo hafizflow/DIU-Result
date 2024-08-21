@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class PersonalInfoText extends StatelessWidget {
   final String label;
-  final String name;
+  final String data;
 
   const PersonalInfoText({
     super.key,
     required this.label,
-    required this.name,
+    required this.data,
   });
 
   @override
@@ -17,18 +17,14 @@ class PersonalInfoText extends StatelessWidget {
         children: [
           TextSpan(
             text: '$label: ',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-            ),
+            style: Theme.of(context).textTheme.labelMedium,
           ),
           TextSpan(
-            text: name,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w400,
-            ),
+            text: data,
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                ),
           ),
         ],
       ),

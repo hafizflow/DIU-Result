@@ -1,7 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:diu_result/controller/personal_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/common/widget/personal_info_text.dart';
+import '../../../utils/const/color.dart';
 
 class PersonalInfoCard extends StatelessWidget {
   const PersonalInfoCard({
@@ -23,53 +25,67 @@ class PersonalInfoCard extends StatelessWidget {
           width: double.infinity,
           child: Card(
             margin: EdgeInsets.zero,
-            color: Colors.white.withOpacity(.3),
+            color: CColor.offDark,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 12,
-                vertical: 14,
+                vertical: 12,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Personal Information',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 8),
                   PersonalInfoText(
                     label: 'Name',
-                    name: controller.personalInfoModel.studentName ?? '',
+                    data: controller.personalInfoModel.studentName ?? '',
                   ),
                   const SizedBox(height: 2),
                   PersonalInfoText(
                     label: 'Program',
-                    name: controller.personalInfoModel.progShortName ?? '',
+                    data: controller.personalInfoModel.progShortName ?? '',
                   ),
                   const SizedBox(height: 2),
                   PersonalInfoText(
                     label: 'Campus',
-                    name: controller.personalInfoModel.campusName ?? '',
+                    data: controller.personalInfoModel.campusName ?? '',
                   ),
                   const SizedBox(height: 2),
                   PersonalInfoText(
                     label: 'Shift',
-                    name: controller.personalInfoModel.shift ?? '',
+                    data: controller.personalInfoModel.shift ?? '',
                   ),
                   const SizedBox(height: 2),
                   PersonalInfoText(
                     label: 'Department',
-                    name: controller.personalInfoModel.departmentName ?? '',
+                    data: controller.personalInfoModel.departmentName ?? '',
                   ),
                   const SizedBox(height: 2),
                   PersonalInfoText(
                     label: 'Faculty',
-                    name: controller.personalInfoModel.facultyName ?? '',
+                    data: controller.personalInfoModel.facultyName ?? '',
                   ),
+                  const SizedBox(height: 4),
+                  AnimatedTextKit(animatedTexts: [
+                    ColorizeAnimatedText(
+                      'For More Information >>>',
+                      textStyle: const TextStyle(
+                        color: Colors.teal,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      colors: [
+                        const Color(0xFFAAFFF8),
+                        const Color(0xFFF8DE22),
+                        const Color(0xFFF11A7B),
+                        const Color(0xFF5C48AF),
+                      ],
+                      speed: const Duration(seconds: 1),
+                    ),
+                  ]),
                 ],
               ),
             ),

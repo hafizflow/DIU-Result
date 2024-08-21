@@ -1,4 +1,3 @@
-
 import 'package:diu_result/model/personal_info_model.dart';
 import 'package:diu_result/services/network_caller_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +30,9 @@ class PersonalInfoController extends GetxController {
 
     if (response.isSuccess) {
       _personalInfoModel = PersonalInfoModel.fromJson(response.responseData);
-      isSuccess = true;
+      if (_personalInfoModel.studentId != null) {
+        isSuccess = true;
+      }
     } else {
       _errorMessage = response.errorMessage;
     }

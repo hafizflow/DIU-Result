@@ -44,6 +44,14 @@ class SemesterResultController extends GetxController {
 
           log(semesterResults.toString());
 
+          if (semesterResults.isEmpty) {
+            count++;
+            if (count == 3) {
+              count = 0;
+              break;
+            }
+          }
+
           // Add the list of semester results to the _allSemesterResults
           if (semesterResults.isNotEmpty) {
             _allSemesterResults.add(semesterResults);

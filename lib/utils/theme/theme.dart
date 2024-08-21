@@ -1,3 +1,4 @@
+import 'package:diu_result/utils/theme/custome_theme/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'custome_theme/text_field_theme.dart';
 
@@ -9,5 +10,6 @@ class DIUResultAppTheme {
     brightness: Brightness.light,
     primaryColor: Colors.white,
     inputDecorationTheme: CTextFieldTheme.inputDecorationTheme,
+    textTheme: CTextTheme.textTheme,
   );
 }

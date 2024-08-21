@@ -1,13 +1,17 @@
 import 'package:diu_result/utils/background/background.dart';
-import 'package:diu_result/utils/common/widget/personal_info_text.dart';
-import 'package:diu_result/view/over_all_result_screen/widget/appbar_title.dart';
 import 'package:flutter/material.dart';
 import '../../model/semester_result_model.dart';
+import '../../utils/const/color.dart';
 
 class DetailsResultScreen extends StatelessWidget {
-  const DetailsResultScreen({super.key, required this.result});
+  const DetailsResultScreen({
+    super.key,
+    required this.result,
+    required this.semesterNameYear,
+  });
 
   final List<SemesterResultModel> result;
+  final String semesterNameYear;
 
   @override
   Widget build(BuildContext context) {
@@ -17,46 +21,103 @@ class DetailsResultScreen extends StatelessWidget {
           const BackGround(),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const AppBarTitle(isShowBack: true),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: BackButton(color: CColor.offWhite),
+                  ),
+                  Text(
+                    semesterNameYear,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 16),
                   Expanded(
-                    child: ListView.builder(
+                    child: ListView.separated(
                       itemCount: result.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          color: Colors.white.withOpacity(.3),
-                          child: ListTile(
-                            title: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: PersonalInfoText(
-                                  label: 'Subject:',
-                                  name: result[index].courseTitle.toString()),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                PersonalInfoText(
-                                  label: 'Grade: ',
-                                  name: result[index].gradeLetter.toString(),
+                        return Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                              color: CColor.offDark,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * .65,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Text(
+                                        result[index].courseTitle.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                        maxLines: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Credit : ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                      Text(
+                                        result[index]
+                                            .totalCredit!
+                                            .toInt()
+                                            .toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Grade : ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                      Text(
+                                        result[index].gradeLetter.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundColor: const Color(0xFF415053),
+                                child: Text(
+                                  result[index].pointEquivalent.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(fontSize: 18),
                                 ),
-                                const SizedBox(height: 2),
-                                PersonalInfoText(
-                                  label: 'Grade Point: ',
-                                  name:
-                                      result[index].pointEquivalent.toString(),
-                                ),
-                              ],
-                            ),
-                            trailing: CircleAvatar(
-                              backgroundColor: Colors.grey,
-                              child: Text(result[index].totalCredit.toString()),
-                            ),
+                              )
+                            ],
                           ),
                         );
                       },
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
                     ),
                   )
                 ],

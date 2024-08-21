@@ -1,69 +1,102 @@
-import 'package:diu_result/controller/semester_id_name_controller.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:diu_result/controller/api_controller.dart';
 import 'package:diu_result/controller/personal_info_controller.dart';
 import 'package:diu_result/controller/semester_result_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../utils/const/color.dart';
+import 'custom_snackbar.dart';
+
 class CustomSearchField extends StatelessWidget {
-  CustomSearchField({
-    super.key,
-  });
+  CustomSearchField({super.key});
 
+  final aController = Get.find<ApiController>();
   final pController = Get.find<PersonalInfoController>();
-  final sIdNameController = Get.find<SemesterIdNameController>();
-  final sResultController = Get.find<SemesterResultController>();
-
-  /// Function to handle the result search operation
-  Future<void> performSearch() async {
-    await pController.getPersonalInfo(pController.idTEController.text.trim());
-
-    bool success = await sIdNameController.getAllSemesterIdName();
-
-    if (success && sIdNameController.semesterIds.isNotEmpty) {
-      await sResultController.getAllSemesterResults(
-        sIdNameController.semesterIds,
-        pController.idTEController.text.trim(),
-      );
-    }
-  }
+  final sController = Get.find<SemesterResultController>();
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: pController.idTEController,
-      style: TextStyle(
-        color: Colors.white.withOpacity(.8),
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return 'Please enter your ID';
-        }
-        // You can add further synchronous checks here if needed
-        return null;
-      },
-      decoration: InputDecoration(
-        hintText: 'Enter Your ID',
-        hintStyle: const TextStyle(color: Colors.white),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.only(right: 4.0),
-          child: IconButton(
-            onPressed: () async {
-              await performSearch();
-            },
-            icon: const Icon(Iconsax.search_normal),
+    return Form(
+      key: aController.searchKey,
+      child: TextFormField(
+        controller: pController.idTEController,
+        style: TextStyle(
+          color: Colors.white.withOpacity(.8),
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            sController.allSemesterResults.clear();
+            final snackBar = customSnackBar(
+              title: 'Forgot!',
+              message: 'Please enter your Student-ID',
+              contentType: ContentType.help,
+            );
+            ScaffoldMessenger.of(Get.context!)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
+            return '';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          hintText: 'Enter Your ID',
+          hintStyle: const TextStyle(color: CColor.offWhite),
+          counterText: '',
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 4.0),
+            child: IconButton(
+              icon: const Icon(Iconsax.search_normal),
+              onPressed: () async {
+                if (!aController.searchKey.currentState!.validate()) {
+                  return;
+                }
+
+                if (await aController.personalInfoSearch() == false) {
+                  sController.allSemesterResults.clear();
+                  final snackBar = customSnackBar(
+                    title: 'On Snap!',
+                    message: 'Please insert valid Student-ID',
+                    contentType: ContentType.failure,
+                  );
+                  ScaffoldMessenger.of(Get.context!)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(snackBar);
+                  return;
+                }
+
+                aController.resultSearch();
+              },
+            ),
           ),
         ),
+        cursorColor: Colors.white,
+        keyboardType: const TextInputType.numberWithOptions(),
+        textInputAction: TextInputAction.search,
+        onFieldSubmitted: (_) async {
+          if (!aController.searchKey.currentState!.validate()) {
+            return;
+          }
+
+          if (await aController.personalInfoSearch() == false) {
+            sController.allSemesterResults.clear();
+            final snackBar = customSnackBar(
+              title: 'On Snap!',
+              message: 'Please insert valid Student-ID',
+              contentType: ContentType.failure,
+            );
+            ScaffoldMessenger.of(Get.context!)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(snackBar);
+            return;
+          }
+
+          aController.resultSearch();
+        },
       ),
-      cursorColor: Colors.white.withOpacity(.6),
-      keyboardType: const TextInputType.numberWithOptions(),
-      textInputAction: TextInputAction.search,
-      // Trigger the search operation when the search button on the keyboard is pressed
-      onFieldSubmitted: (value) async {
-        await performSearch();
-      },
     );
   }
 }

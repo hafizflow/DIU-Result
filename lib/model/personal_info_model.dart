@@ -26,4 +26,14 @@ class PersonalInfoModel {
     facultyName = json['facultyName'];
     shift = json['shift'];
   }
+
+  void clear() {
+    studentId = null;
+    campusName = null;
+    studentName = null;
+    progShortName = null;
+    departmentName = null;
+    facultyName = null;
+    shift = null;
+  }
 }

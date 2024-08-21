@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../controller/semester_result_controller.dart';
 import '../../../model/semester_result_model.dart';
+import '../../../utils/const/color.dart';
 import '../../details_result_screen/details_result_screen.dart';
 
 class AllSemesterCgpaGrid extends StatelessWidget {
@@ -52,7 +53,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
           if (controller.allSemesterResults.isEmpty) {
             return const Center(
               child: Text(
-                'Search your result',
+                'Search Your Result',
                 style: TextStyle(color: Colors.white),
               ),
             );
@@ -70,19 +71,22 @@ class AllSemesterCgpaGrid extends StatelessWidget {
                   controller.allSemesterResults[index];
 
               // Assuming all courses in a semester have the same semesterName and semesterYear
-              String? semesterName = semesterResults.first.semesterName;
-              String semesterYear =
-                  semesterResults.first.semesterYear.toString();
+              String semesterNameYear =
+                  "${semesterResults.first.semesterName} ${semesterResults.first.semesterYear}";
 
               // Calculate the average CGPA for the semester
               double? cgpa = semesterResults.first.cgpa;
 
               return GestureDetector(
-                onTap: () =>
-                    Get.to(() => DetailsResultScreen(result: semesterResults)),
+                onTap: () => Get.to(
+                  () => DetailsResultScreen(
+                    result: semesterResults,
+                    semesterNameYear: semesterNameYear,
+                  ),
+                ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.3),
+                    color: CColor.offDark,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Center(
@@ -91,19 +95,11 @@ class AllSemesterCgpaGrid extends StatelessWidget {
                       children: [
                         Text(
                           cgpa.toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(
-                          '$semesterName $semesterYear',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 22,
-                          ),
+                          semesterNameYear,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
                     ),

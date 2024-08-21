@@ -14,6 +14,8 @@ dependencies:
   iconsax:
   http:
   shimmer: ^3.0.0
+  awesome_snackbar_content: ^0.1.3
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -31,28 +33,4 @@ flutter:
   
   
 
-  
-  
 
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
