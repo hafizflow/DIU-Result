@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../controller/semester_result_controller.dart';
 import '../../../model/semester_result_model.dart';
 import '../../../utils/const/color.dart';
 import '../../details_result_screen/details_result_screen.dart';
+import 'grid_shimmer_effect.dart';
 
 class AllSemesterCgpaGrid extends StatelessWidget {
   const AllSemesterCgpaGrid({super.key});
@@ -18,27 +18,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
       child: Obx(
         () {
           if (controller.inProgress) {
-            return GridView.builder(
-              itemCount: 6, // Number of shimmer placeholders
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                mainAxisExtent: 140,
-              ),
-              itemBuilder: (_, index) {
-                return Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.grey.shade500,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                );
-              },
-            );
+            return const GridShimmerEffect();
           }
 
           if (controller.errorMessage.isNotEmpty) {

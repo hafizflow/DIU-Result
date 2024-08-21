@@ -46,7 +46,7 @@ class SemesterResultController extends GetxController {
 
           if (semesterResults.isEmpty) {
             count++;
-            if (count == 3) {
+            if (count == 4) {
               count = 0;
               break;
             }
