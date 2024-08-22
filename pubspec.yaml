@@ -18,6 +18,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   syncfusion_flutter_gauges: ^26.2.10
   fl_chart: ^0.68.0
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:

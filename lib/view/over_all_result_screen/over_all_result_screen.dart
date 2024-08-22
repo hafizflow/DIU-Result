@@ -15,27 +15,38 @@ class OverAllResultScreen extends StatelessWidget {
       body: Stack(
         children: [
           const BackGround(),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: GetBuilder<PersonalInfoController>(builder: (controller) {
-                return Column(
-                  children: [
-                    Text(
-                      'DIU Result',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    const SizedBox(height: 16),
-                    CustomSearchField(),
-                    const SizedBox(height: 16),
-                    controller.personalInfoModel.studentId == null
-                        ? const SizedBox.shrink()
-                        : const PersonalInfoCard(),
-                    const SizedBox(height: 16),
-                    const AllSemesterCgpaGrid(),
-                  ],
-                );
-              }),
+          GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.focusedChild?.unfocus();
+              }
+            },
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: GetBuilder<PersonalInfoController>(
+                  builder: (controller) {
+                    return Column(
+                      children: [
+                        Text(
+                          'DIU Result',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        const SizedBox(height: 16),
+                        CustomSearchField(),
+                        const SizedBox(height: 16),
+                        controller.personalInfoModel.studentId == null
+                            ? const SizedBox.shrink()
+                            : const PersonalInfoCard(),
+                        const SizedBox(height: 16),
+                        const AllSemesterCgpaGrid(),
+                      ],
+                    );
+                  },
+                ),
+              ),
             ),
           ),
         ],

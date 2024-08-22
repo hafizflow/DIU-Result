@@ -1,5 +1,7 @@
+import 'package:diu_result/utils/common/widget/custom_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import '../../../controller/semester_result_controller.dart';
 import '../../../model/semester_result_model.dart';
 import '../../../utils/const/color.dart';
@@ -31,14 +33,28 @@ class AllSemesterCgpaGrid extends StatelessWidget {
           }
 
           if (controller.allSemesterResults.isEmpty) {
-            return const Center(
-              child: Text(
-                'Search Your Result',
-                style: TextStyle(color: Colors.white),
+            return Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 100.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        'assets/4.json',
+                        width: MediaQuery.sizeOf(context).width * .8,
+                        height: MediaQuery.sizeOf(context).height * .4,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      const Text('Search your result'),
+                    ],
+                  ),
+                ),
               ),
             );
           }
           return GridView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.allSemesterResults.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -58,15 +74,19 @@ class AllSemesterCgpaGrid extends StatelessWidget {
               double? cgpa = semesterResults.first.cgpa;
 
               return GestureDetector(
-                onTap: () => Get.to(
-                  () => DetailsResultScreen(
-                    result: semesterResults,
-                    semesterNameYear: semesterNameYear,
+                onTap: () => Navigator.push(
+                  context,
+                  CustomRoute(
+                    page: DetailsResultScreen(
+                      result: semesterResults,
+                      semesterNameYear: semesterNameYear,
+                    ),
                   ),
                 ),
                 child: Container(
                   decoration: BoxDecoration(
                     color: CColor.offDark,
+                    border: Border.all(color: Colors.grey.shade700),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Center(

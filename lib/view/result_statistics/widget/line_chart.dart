@@ -22,19 +22,22 @@ class LineChartSample2 extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1,
       child: Padding(
-          padding: const EdgeInsets.only(
-            right: 16,
-            left: 0,
-            top: 24,
-            bottom: 20,
-          ),
-          child: GetBuilder<LineChartController>(builder: (lController) {
+        padding: const EdgeInsets.only(
+          right: 16,
+          left: 0,
+          top: 54,
+          bottom: 20,
+        ),
+        child: GetBuilder<LineChartController>(
+          builder: (lController) {
             return LineChart(
               lController.showAvg.value
                   ? avgData(controller, lController, gradientColors)
                   : mainData(controller, gradientColors),
             );
-          })),
+          },
+        ),
+      ),
     );
   }
 
@@ -79,35 +82,20 @@ class LineChartSample2 extends StatelessWidget {
     );
 
     String text;
-    switch (value) {
+    switch (value.toDouble()) {
       case 0:
         text = '0.0';
         break;
       case 1:
-        text = '2.0';
+        text = '1.0';
         break;
       case 2:
-        text = '2.25';
+        text = '2.0';
         break;
       case 3:
-        text = '2.5';
-        break;
-      case 4:
-        text = '2.75';
-        break;
-      case 5:
         text = '3.0';
         break;
-      case 6:
-        text = '3.25';
-        break;
-      case 7:
-        text = '3.5';
-        break;
-      case 8:
-        text = '3.75';
-        break;
-      case 9:
+      case 4:
         text = '4.0';
         break;
       default:
@@ -120,6 +108,10 @@ class LineChartSample2 extends StatelessWidget {
   LineChartData mainData(
       SemesterResultController controller, List<Color> gradientColors) {
     return LineChartData(
+      minX: .8,
+      maxX: controller.semesterNameCg.length.toDouble(),
+      minY: 0,
+      maxY: 4,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,
@@ -128,7 +120,7 @@ class LineChartSample2 extends StatelessWidget {
         getDrawingHorizontalLine: (value) {
           return const FlLine(
             color: AppColors.mainGridLineColor,
-            strokeWidth: 1,
+            strokeWidth: 2,
           );
         },
       ),
@@ -162,10 +154,6 @@ class LineChartSample2 extends StatelessWidget {
         show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
-      minX: .8,
-      maxX: controller.semesterNameCg.length.toDouble(),
-      minY: 0,
-      maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: List.generate(
@@ -196,6 +184,10 @@ class LineChartSample2 extends StatelessWidget {
   LineChartData avgData(SemesterResultController controller,
       LineChartController lineController, List<Color> gradientColors) {
     return LineChartData(
+      minX: .8,
+      maxX: controller.semesterNameCg.length.toDouble(),
+      minY: 0,
+      maxY: 4,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,
@@ -204,7 +196,7 @@ class LineChartSample2 extends StatelessWidget {
         getDrawingHorizontalLine: (value) {
           return const FlLine(
             color: AppColors.mainGridLineColor,
-            strokeWidth: 1,
+            strokeWidth: 2,
           );
         },
       ),
@@ -238,19 +230,13 @@ class LineChartSample2 extends StatelessWidget {
         show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
-      minX: .8,
-      maxX: controller.semesterNameCg.length.toDouble() + 1,
-      minY: 0,
-      maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: List.generate(
             controller.semesterNameCg.length,
             (index) {
               return FlSpot(
-                index.toDouble() + 1,
-                controller.cgpa.toPrecision(2),
-              );
+                  index.toDouble() + 1, controller.cgpa.toPrecision(2));
             },
           ),
           isCurved: true,
@@ -261,14 +247,9 @@ class LineChartSample2 extends StatelessWidget {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
             ),
           ),
         ),

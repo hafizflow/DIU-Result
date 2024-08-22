@@ -10,7 +10,7 @@ class BackGround extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/bgl.png"),
+          image: AssetImage("assets/bg.png"),
           fit: BoxFit.cover,
         ),
       ),

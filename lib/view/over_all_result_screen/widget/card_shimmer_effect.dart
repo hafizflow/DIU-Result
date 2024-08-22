@@ -27,7 +27,7 @@ class CardShimmerEffect extends StatelessWidget {
               children: [
                 Container(
                   width: 100,
-                  height: 20,
+                  height: 40,
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 8),

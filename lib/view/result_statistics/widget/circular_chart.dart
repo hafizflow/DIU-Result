@@ -1,4 +1,5 @@
 import 'package:diu_result/controller/semester_result_controller.dart';
+import 'package:diu_result/utils/const/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -24,7 +25,8 @@ class CircularChart extends StatelessWidget {
               cornerStyle: CornerStyle.bothCurve,
               gradient: const SweepGradient(
                 colors: [
-                  Color(0xFFFF8209),
+                  AppColors.contentColorCyan,
+                  AppColors.contentColorBlue,
                 ],
               ),
             ),
