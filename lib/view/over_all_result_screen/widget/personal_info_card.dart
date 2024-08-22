@@ -19,10 +19,10 @@ class PersonalInfoCard extends StatelessWidget {
         if (controller.inProgress) {
           return const CardShimmerEffect();
         }
-        return SizedBox(
-          width: double.infinity,
-          child: GestureDetector(
-            onTap: () => Get.to(() => const ResultStatisticsScreen()),
+        return GestureDetector(
+          onTap: () => Get.to(() => const ResultStatisticsScreen()),
+          child: SizedBox(
+            width: double.infinity,
             child: Card(
               margin: EdgeInsets.zero,
               color: CColor.offDark,

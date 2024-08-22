@@ -1,4 +1,8 @@
+import 'package:diu_result/controller/line_chart_controller.dart';
+import 'package:diu_result/controller/personal_info_controller.dart';
+import 'package:diu_result/controller/semester_result_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/common/widget/personal_info_text.dart';
 import '../../../utils/const/color.dart';
@@ -10,6 +14,10 @@ class SemesterInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SemesterResultController>();
+    final pController = Get.find<PersonalInfoController>();
+    final lController = Get.find<LineChartController>();
+
     return SizedBox(
       width: double.infinity,
       child: Card(
@@ -31,29 +39,58 @@ class SemesterInformation extends StatelessWidget {
                     ?.copyWith(fontSize: 22),
               ),
               const SizedBox(height: 12),
-              const PersonalInfoText(
+              PersonalInfoText(
                 label: 'ID ',
-                data: '',
+                data: pController.idTEController.text,
               ),
               const SizedBox(height: 3),
-              const PersonalInfoText(
+              PersonalInfoText(
                 label: 'Credit ',
-                data: '',
+                data: controller.totalCredit.toStringAsFixed(0),
               ),
               const SizedBox(height: 3),
-              const PersonalInfoText(
+              PersonalInfoText(
                 label: 'Semester ',
-                data: '',
+                data: controller.allSemesterResults.length.toString(),
               ),
               const SizedBox(height: 3),
-              const PersonalInfoText(
-                label: 'Year ',
-                data: '',
-              ),
-              const SizedBox(height: 3),
-              const PersonalInfoText(
-                label: 'Batch ',
-                data: '',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      PersonalInfoText(
+                        label: 'Year ',
+                        data: (controller.allSemesterResults.length / 2)
+                            .floorToDouble()
+                            .toStringAsFixed(0),
+                      ),
+                      const SizedBox(height: 3),
+                      PersonalInfoText(
+                        label: 'Batch ',
+                        data: pController.personalInfoModel.batchNo.toString(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: Obx(() {
+                      return OutlinedButton(
+                        onPressed: () => lController.toggle(),
+                        child: Text(
+                          'Average',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: lController.showAvg.value
+                                ? Colors.white.withOpacity(0.5)
+                                : Colors.white,
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,4 +1,6 @@
+import 'package:diu_result/controller/semester_result_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class CircularChart extends StatelessWidget {
@@ -8,21 +10,22 @@ class CircularChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SemesterResultController>();
+
     return SfRadialGauge(
       enableLoadingAnimation: true,
       axes: [
         RadialAxis(
-          radiusFactor: .8,
-          pointers: const [
+          radiusFactor: 0.8,
+          pointers: [
             RangePointer(
-              value: 95,
+              value: controller.percentage,
               width: 50,
               cornerStyle: CornerStyle.bothCurve,
-              gradient: SweepGradient(
+              gradient: const SweepGradient(
                 colors: [
                   Color(0xFFFF8209),
                 ],
-                // stops: [.1, .75],
               ),
             ),
           ],
@@ -34,8 +37,8 @@ class CircularChart extends StatelessWidget {
           endAngle: 1,
           showLabels: false,
           showTicks: false,
-          annotations: const [
-            GaugeAnnotation(
+          annotations: [
+            const GaugeAnnotation(
               widget: Text(
                 'CGPA',
                 style: TextStyle(
@@ -48,8 +51,8 @@ class CircularChart extends StatelessWidget {
             ),
             GaugeAnnotation(
               widget: Text(
-                '3.88',
-                style: TextStyle(
+                controller.cgpa.toStringAsFixed(2),
+                style: const TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.bold,
                 ),

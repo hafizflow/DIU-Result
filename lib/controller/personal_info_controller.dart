@@ -1,3 +1,4 @@
+import 'package:diu_result/controller/line_chart_controller.dart';
 import 'package:diu_result/model/personal_info_model.dart';
 import 'package:diu_result/services/network_caller_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import '../model/response_data.dart';
 import '../utils/urls/urls.dart';
 
 class PersonalInfoController extends GetxController {
+  final controller = Get.put(LineChartController());
   final TextEditingController idTEController = TextEditingController();
 
   bool _inProgress = false;

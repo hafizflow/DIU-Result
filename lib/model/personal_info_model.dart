@@ -6,6 +6,7 @@ class PersonalInfoModel {
   String? departmentName;
   String? facultyName;
   String? shift;
+  int? batchNo;
 
   PersonalInfoModel({
     this.studentId,
@@ -15,6 +16,7 @@ class PersonalInfoModel {
     this.departmentName,
     this.facultyName,
     this.shift,
+    this.batchNo,
   });
 
   PersonalInfoModel.fromJson(Map<String, dynamic> json) {
@@ -25,15 +27,6 @@ class PersonalInfoModel {
     departmentName = json['departmentName'];
     facultyName = json['facultyName'];
     shift = json['shift'];
-  }
-
-  void clear() {
-    studentId = null;
-    campusName = null;
-    studentName = null;
-    progShortName = null;
-    departmentName = null;
-    facultyName = null;
-    shift = null;
+    batchNo = json['batchNo'];
   }
 }

@@ -1,6 +1,8 @@
 import 'package:diu_result/utils/background/background.dart';
 import 'package:diu_result/view/result_statistics/widget/circular_chart.dart';
+import 'package:diu_result/view/result_statistics/widget/line_chart.dart';
 import 'package:diu_result/view/result_statistics/widget/semester_infromation.dart';
+import 'package:diu_result/view/result_statistics/widget/wish_message.dart';
 import 'package:flutter/material.dart';
 import '../../utils/const/color.dart';
 
@@ -14,36 +16,38 @@ class ResultStatisticsScreen extends StatelessWidget {
         children: [
           const BackGround(),
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: Column(
-                children: [
-                  const Align(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Align(
                     alignment: Alignment.topLeft,
                     child: BackButton(color: CColor.offWhite),
                   ),
-                  SingleChildScrollView(
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.only(
+                        left: 24,
+                        right: 24,
+                        bottom: 16,
+                      ),
                       child: Column(
                         children: [
-                          Text(
-                            'Excellent!!',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(fontSize: 34),
-                          ),
+                          const SizedBox(height: 16),
+                          const WishMessage(),
                           const CircularChart(),
                           const SemesterInformation(),
+                          LineChartSample2()
                         ],
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
