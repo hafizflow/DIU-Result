@@ -1,6 +1,7 @@
 import 'package:diu_result/controller/line_chart_controller.dart';
 import 'package:diu_result/controller/personal_info_controller.dart';
 import 'package:diu_result/controller/semester_result_controller.dart';
+import 'package:diu_result/utils/const/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +21,13 @@ class SemesterInformation extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: Card(
+      child: Container(
+        decoration: BoxDecoration(
+          color: CColor.offDark,
+          border: Border.all(color: Colors.grey.shade800),
+          borderRadius: BorderRadius.circular(12),
+        ),
         margin: EdgeInsets.zero,
-        color: CColor.offDark,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -83,8 +88,8 @@ class SemesterInformation extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             color: lController.showAvg.value
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.white,
+                                ? Colors.blue.withOpacity(0.8)
+                                : AppColors.contentColorCyan,
                           ),
                         ),
                       );

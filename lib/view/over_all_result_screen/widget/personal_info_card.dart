@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:diu_result/controller/personal_info_controller.dart';
 import 'package:diu_result/utils/common/widget/custom_route.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/card_shimmer_effect.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/common/widget/personal_info_text.dart';
 import '../../../utils/const/color.dart';
+import 'animated_text.dart';
 
 class PersonalInfoCard extends StatelessWidget {
   const PersonalInfoCard({
@@ -21,7 +21,6 @@ class PersonalInfoCard extends StatelessWidget {
           return const CardShimmerEffect();
         }
         return GestureDetector(
-          // onTap: () => Get.to(() => const ResultStatisticsScreen()),
           onTap: () => Navigator.push(
             context,
             CustomRoute(page: const ResultStatisticsScreen()),
@@ -78,23 +77,7 @@ class PersonalInfoCard extends StatelessWidget {
                       data: controller.personalInfoModel.facultyName ?? '',
                     ),
                     const SizedBox(height: 4),
-                    AnimatedTextKit(animatedTexts: [
-                      ColorizeAnimatedText(
-                        'For More Information >>>',
-                        textStyle: const TextStyle(
-                          color: Colors.teal,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        colors: [
-                          const Color(0xFFAAFFF8),
-                          const Color(0xFFF8DE22),
-                          const Color(0xFFF11A7B),
-                          const Color(0xFF5C48AF),
-                        ],
-                        speed: const Duration(seconds: 1),
-                      ),
-                    ]),
+                    const CAnimatedText(),
                   ],
                 ),
               ),

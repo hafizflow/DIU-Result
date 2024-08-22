@@ -7,6 +7,7 @@ class DIUResultAppTheme {
 
   static ThemeData theme = ThemeData(
     useMaterial3: true,
+    scaffoldBackgroundColor: Colors.transparent,
     brightness: Brightness.light,
     primaryColor: Colors.white,
     inputDecorationTheme: CTextFieldTheme.inputDecorationTheme,

@@ -25,7 +25,7 @@ class LineChartSample2 extends StatelessWidget {
         padding: const EdgeInsets.only(
           right: 16,
           left: 0,
-          top: 54,
+          top: 0,
           bottom: 20,
         ),
         child: GetBuilder<LineChartController>(
@@ -111,7 +111,7 @@ class LineChartSample2 extends StatelessWidget {
       minX: .8,
       maxX: controller.semesterNameCg.length.toDouble(),
       minY: 0,
-      maxY: 4,
+      maxY: 5,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,
@@ -187,7 +187,7 @@ class LineChartSample2 extends StatelessWidget {
       minX: .8,
       maxX: controller.semesterNameCg.length.toDouble(),
       minY: 0,
-      maxY: 4,
+      maxY: 5,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,

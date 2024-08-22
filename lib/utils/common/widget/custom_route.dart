@@ -6,7 +6,7 @@ class CustomRoute extends PageRouteBuilder {
   CustomRoute({
     required this.page,
   }) : super(
-            transitionDuration: const Duration(milliseconds: 700),
+            transitionDuration: const Duration(milliseconds: 500),
             reverseTransitionDuration: const Duration(milliseconds: 500),
             pageBuilder: (context, animation, secondaryAnimation) => page);
 

@@ -3,6 +3,7 @@ import 'package:diu_result/utils/background/background.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/all_semester_cgpa_grid.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/custom_search_field.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/personal_info_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,45 +12,46 @@ class OverAllResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          const BackGround(),
-          GestureDetector(
-            onTap: () {
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus) {
-                currentFocus.focusedChild?.unfocus();
-              }
-            },
-            child: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: GetBuilder<PersonalInfoController>(
-                  builder: (controller) {
-                    return Column(
-                      children: [
-                        Text(
-                          'DIU Result',
-                          style: Theme.of(context).textTheme.headlineMedium,
+    return BackGround(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: GetBuilder<PersonalInfoController>(
+              builder: (controller) {
+                return Column(
+                  children: [
+                    Text(
+                      'DIU Result',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: 16),
+                    CustomSearchField(),
+                    const SizedBox(height: 16),
+                    Flexible(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: SizedBox(
+                          height: MediaQuery.sizeOf(context).height,
+                          child: Column(
+                            children: [
+                              if (controller.personalInfoModel.studentId !=
+                                  null)
+                                const PersonalInfoCard(),
+                              const SizedBox(height: 16),
+                              const AllSemesterCgpaGrid(),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 16),
-                        CustomSearchField(),
-                        const SizedBox(height: 16),
-                        controller.personalInfoModel.studentId == null
-                            ? const SizedBox.shrink()
-                            : const PersonalInfoCard(),
-                        const SizedBox(height: 16),
-                        const AllSemesterCgpaGrid(),
-                      ],
-                    );
-                  },
-                ),
-              ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
-        ],
+        ),
       ),
     );
   }

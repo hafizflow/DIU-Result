@@ -51,6 +51,8 @@ class CustomSearchField extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Iconsax.search_normal),
               onPressed: () async {
+                FocusScope.of(context).unfocus();
+
                 if (!aController.searchKey.currentState!.validate()) {
                   return;
                 }

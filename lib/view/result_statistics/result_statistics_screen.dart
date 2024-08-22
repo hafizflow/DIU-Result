@@ -11,44 +11,41 @@ class ResultStatisticsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          const BackGround(),
-          SafeArea(
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 16),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: BackButton(color: CColor.offWhite),
-                  ),
+    return BackGround(
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 16),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: BackButton(color: CColor.offWhite),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 24,
-                        right: 24,
-                        bottom: 16,
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          const WishMessage(),
-                          const CircularChart(),
-                          const SemesterInformation(),
-                          LineChartSample2()
-                        ],
-                      ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      bottom: 16,
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        const WishMessage(),
+                        const CircularChart(),
+                        const SemesterInformation(),
+                        LineChartSample2()
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

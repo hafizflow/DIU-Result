@@ -36,17 +36,22 @@ class AllSemesterCgpaGrid extends StatelessWidget {
             return Center(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 100.0),
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.sizeOf(context).height * .4,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset(
-                        'assets/4.json',
+                        'assets/anime.json',
                         width: MediaQuery.sizeOf(context).width * .8,
                         height: MediaQuery.sizeOf(context).height * .4,
                         fit: BoxFit.fitWidth,
                       ),
-                      const Text('Search your result'),
+                      const Text(
+                        'Search your result',
+                        style: TextStyle(letterSpacing: 1, wordSpacing: 1),
+                      ),
                     ],
                   ),
                 ),
@@ -54,7 +59,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
             );
           }
           return GridView.builder(
-            // physics: const NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.allSemesterResults.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
