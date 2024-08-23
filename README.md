@@ -3,7 +3,8 @@
 The **DIU Result App** is a Flutter-based mobile application designed for Daffodil International University (DIU) students to easily access and view their academic results. The app provides a user-friendly interface and a seamless experience to check semester-wise results and overall CGPA.
 
 ## Preview
-![Untitled design](https://github.com/user-attachments/assets/5fe0680a-7010-411d-9a73-007768a77f35)
+<img width="910" alt="Screenshot 2024-08-23 at 11 58 05 AM" src="https://github.com/user-attachments/assets/5ad46fa5-c435-467c-bf76-a7c65326cf0f">
+
 
 ## Features
 
