@@ -21,12 +21,13 @@ class CustomSearchField extends StatelessWidget {
     return Form(
       key: aController.searchKey,
       child: TextFormField(
+        maxLength: 20,
         controller: pController.idTEController,
-        style: TextStyle(
-          color: Colors.white.withOpacity(.8),
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
+        style: const TextStyle(
+            color: CColor.offWhite,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1),
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             sController.allSemesterResults.clear();
@@ -44,7 +45,7 @@ class CustomSearchField extends StatelessWidget {
         },
         decoration: InputDecoration(
           hintText: 'Enter Your ID',
-          hintStyle: const TextStyle(color: CColor.offWhite),
+          hintStyle: const TextStyle(color: Colors.grey),
           counterText: '',
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 4.0),

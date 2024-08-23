@@ -14,9 +14,14 @@ class LineChartSample2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> gradientColors = [
+    List<Color> gradientColorsBlue = [
       AppColors.contentColorCyan,
       AppColors.contentColorBlue,
+    ];
+
+    List<Color> gradientColorsRed = [
+      AppColors.contentColorOrange,
+      AppColors.contentColorRed,
     ];
 
     return AspectRatio(
@@ -32,8 +37,8 @@ class LineChartSample2 extends StatelessWidget {
           builder: (lController) {
             return LineChart(
               lController.showAvg.value
-                  ? avgData(controller, lController, gradientColors)
-                  : mainData(controller, gradientColors),
+                  ? avgData(controller, lController, gradientColorsRed)
+                  : mainData(controller, gradientColorsBlue),
             );
           },
         ),

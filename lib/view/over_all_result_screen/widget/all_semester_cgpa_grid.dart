@@ -43,7 +43,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset(
-                        'assets/anime.json',
+                        'assets/a.json',
                         width: MediaQuery.sizeOf(context).width * .8,
                         height: MediaQuery.sizeOf(context).height * .4,
                         fit: BoxFit.fitWidth,

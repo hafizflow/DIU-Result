@@ -34,6 +34,7 @@ class DetailsResultScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: result.length,
                     itemBuilder: (context, index) {
                       return Container(
