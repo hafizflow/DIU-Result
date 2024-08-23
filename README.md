@@ -1,16 +1,30 @@
-# diu_result
+# DIU Result App
 
-A new Flutter project.
+The **DIU Result App** is a Flutter-based mobile application designed for Daffodil International University (DIU) students to easily access and view their academic results. The app provides a user-friendly interface and a seamless experience to check semester-wise results and overall CGPA.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Student Result Overview:** View semester-wise results and overall CGPA.
+- **Search Functionality:** Quickly search for results using the student ID.
+- **Detailed Semester Results:** View individual course results for each semester.
+- **CGPA Visualization:** Visual representation of CGPA using a line chart.
+- **Funny Messages:** Enjoy short, humorous messages based on your grade point.
+- **Responsive Design:** Works smoothly on both Android and iOS devices.
+- **Clean and Simple UI:** Intuitive design for easy navigation and use.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter:** Cross-platform framework for building natively compiled applications.
+- **Dart:** Programming language used for Flutter development.
+- **GetX:** State management, dependency injection, and route management.
+- **API Integration:** Fetch results data from DIU’s API.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+To run this app locally, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/your-username/diu-result-app.git
+cd diu-result-app
+flutter pub get
+flutter run
