@@ -3,7 +3,6 @@ import 'package:diu_result/utils/background/background.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/all_semester_cgpa_grid.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/custom_search_field.dart';
 import 'package:diu_result/view/over_all_result_screen/widget/personal_info_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
