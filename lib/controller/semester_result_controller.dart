@@ -28,9 +28,6 @@ class SemesterResultController extends GetxController {
   final RxDouble _percentage = 0.0.obs;
   double get percentage => _percentage.value;
 
-  /// For stopping the loop if empty response is found
-  late int count = 0;
-
   /// For storing all semester result and use the list
   final RxList<List<SemesterResultModel>> _allSemesterResults =
       RxList<List<SemesterResultModel>>([]);
@@ -69,14 +66,6 @@ class SemesterResultController extends GetxController {
           }
 
           log(semesterResults.toString());
-
-          if (semesterResults.isEmpty) {
-            count++;
-            if (count == 4) {
-              count = 0;
-              break;
-            }
-          }
 
           // Add the list of semester results to the _allSemesterResults
           if (semesterResults.isNotEmpty) {
