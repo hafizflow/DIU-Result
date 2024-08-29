@@ -47,9 +47,12 @@ class SemesterResultController extends GetxController {
     _allSemesterResults.clear();
     _semesterNameCg.clear();
     update();
-
+    String semesterIdInitial = studentId.substring(0, 3);
     try {
-      for (String semesterId in semesterIds) {
+      int startIndex = semesterIds.indexOf(semesterIdInitial);
+      List<String> filteredSemesterIds = semesterIds.sublist(0, startIndex + 1);
+      filteredSemesterIds.sort((b, a) => b.compareTo(a));
+      for (String semesterId in filteredSemesterIds) {
         final ResponseData response = await NetworkCallerService()
             .getRequest(Urls.semesterResultUrl(semesterId, studentId));
 
