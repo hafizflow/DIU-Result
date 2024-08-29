@@ -59,7 +59,7 @@ class AllSemesterCgpaGrid extends StatelessWidget {
             );
           }
           return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemCount: controller.allSemesterResults.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

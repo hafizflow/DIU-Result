@@ -28,23 +28,10 @@ class OverAllResultScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     CustomSearchField(),
                     const SizedBox(height: 16),
-                    Flexible(
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: SizedBox(
-                          height: MediaQuery.sizeOf(context).height,
-                          child: Column(
-                            children: [
-                              if (controller.personalInfoModel.studentId !=
-                                  null)
-                                const PersonalInfoCard(),
-                              const SizedBox(height: 16),
-                              const AllSemesterCgpaGrid(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    if (controller.personalInfoModel.studentId != null)
+                      const PersonalInfoCard(),
+                    const SizedBox(height: 16),
+                    const AllSemesterCgpaGrid(),
                   ],
                 );
               },
